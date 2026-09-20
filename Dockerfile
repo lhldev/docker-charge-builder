@@ -27,7 +27,7 @@ Architectures: arm64" > /etc/apt/sources.list.d/ubuntu.sources
 RUN dpkg --add-architecture amd64 && dpkg --add-architecture arm64
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    wget tar zip unzip xz-utils pkg-config \
+    wget tar zip unzip xz-utils pkg-config ca-certificates\
     libx11-dev:amd64 libxrandr-dev:amd64 libxinerama-dev:amd64 libxcursor-dev:amd64 libxi-dev:amd64 libgl-dev:amd64 libssl-dev:amd64 \
     libx11-dev:arm64 libxrandr-dev:arm64 libxinerama-dev:arm64 libxcursor-dev:arm64 libxi-dev:arm64 libgl-dev:arm64 libssl-dev:arm64 \
     && apt-get clean \
