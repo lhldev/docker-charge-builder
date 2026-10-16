@@ -34,9 +34,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 RUN ARCH=$(uname -m) && \
-    wget "https://ziglang.org/download/0.16.0/zig-${ARCH}-linux-0.16.0.tar.xz" -O zig.tar.xz --no-check-certificate && \
+    wget "https://ziglang.org/download/0.17.0/zig-${ARCH}-linux-0.17.0.tar.xz" -O zig.tar.xz --no-check-certificate && \
     tar -xf zig.tar.xz && \
-    mv "zig-${ARCH}-linux-0.16.0" /usr/local/zig && \
+    mv "zig-${ARCH}-linux-0.17.0" /usr/local/zig && \
     ln -s /usr/local/zig/zig /usr/local/bin/zig && \
     rm zig.tar.xz
 
