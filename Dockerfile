@@ -27,11 +27,14 @@ Architectures: arm64" > /etc/apt/sources.list.d/ubuntu.sources
 RUN dpkg --add-architecture amd64 && dpkg --add-architecture arm64
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    wget tar zip unzip xz-utils pkg-config ca-certificates\
+    curl wget tar zip unzip xz-utils pkg-config ca-certificates build-essential \
     libx11-dev:amd64 libxrandr-dev:amd64 libxinerama-dev:amd64 libxcursor-dev:amd64 libxi-dev:amd64 libgl-dev:amd64 libssl-dev:amd64 \
     libx11-dev:arm64 libxrandr-dev:arm64 libxinerama-dev:arm64 libxcursor-dev:arm64 libxi-dev:arm64 libgl-dev:arm64 libssl-dev:arm64 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 RUN ARCH=$(uname -m) && \
     wget "https://ziglang.org/download/0.17.0/zig-${ARCH}-linux-0.17.0.tar.xz" -O zig.tar.xz --no-check-certificate && \
